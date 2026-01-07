@@ -1,8 +1,8 @@
 import Fastify from "fastify";
-import { geminiRoutes } from "./routes/gemini.routes.ts";
+import { llmRoutes } from "./routes/llm.routes.ts";
 
 export const app = Fastify({
   logger: true,
 });
 
-app.register(geminiRoutes);
+app.register(llmRoutes);
