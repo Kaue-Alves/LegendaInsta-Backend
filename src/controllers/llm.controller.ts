@@ -3,9 +3,16 @@ import { generateCaption } from "../services/llm.service.ts";
 
 export class LLMController {
     async generate(request: FastifyRequest, reply: FastifyReply) {
-        const { prompt } = request.body as { prompt: string };
+        const file = await request.file();
 
-        const result = await generateCaption(prompt);
+
+        if (!file?.mimetype.startsWith("image/")) {
+            return reply
+                .status(400)
+                .send({ error: "Arquivo não é uma imagem." });
+        }
+
+        const result = await generateCaption(file);
 
         reply.send({ result });
     }
