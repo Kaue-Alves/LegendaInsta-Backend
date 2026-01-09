@@ -8,7 +8,7 @@ export const app = Fastify({
 
 app.register(fastifyMultipart, {
     limits: {
-        fileSize: 1048576 * 5,
+        fileSize: 1048576 * 50,
         files: 1
     }
 })
